@@ -4,3 +4,6 @@ CREATE OR REPLACE TABLE raw.table01_main (
     name VARCHAR(100),
     created_at DATE
 );
+
+create or replace view curated.hardik_view as
+select * from raw.table01_main;

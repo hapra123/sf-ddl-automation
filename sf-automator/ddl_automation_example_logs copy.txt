@@ -1,0 +1,183 @@
+PS D:\Projects\SF-DDL-POC> & C:/Users/hardi/AppData/Local/Programs/Python/Python313/python.exe d:/Projects/SF-DDL-POC/sf-automator/ddl_automation.py
+🔌 Testing Snowflake connection...
+Running: C:\Program Files\Snowflake SnowSQL\snowsql.exe -a PLEPXAR-CZ27669 -u HAPRA12345 -w COMPUTE_WH... [query hidden]
+STDOUT:
+* SnowSQL * v1.4.5
+Type SQL statements or !help
++----------------+-------------------+--------------------+
+| CURRENT_USER() | CURRENT_ACCOUNT() | CURRENT_REGION()   |
+|----------------+-------------------+--------------------|
+| HAPRA12345     | FL62809           | AWS_AP_SOUTHEAST_1 |
++----------------+-------------------+--------------------+
+1 Row(s) produced. Time Elapsed: 0.097s
+Goodbye!
+
+✅ Connection successful!
+
+📊 Found 15 table folders
+
+
+================================================================================
+📋 SCHEMA EXECUTION MENU
+================================================================================
+  1. Execute STAGE schema (stage.* files)
+  2. Execute RAW schema (raw.* files)
+  3. Execute CURATED schema (curated.* files)
+  0. Exit
+================================================================================
+
+💡 Note: Files are executed AS-IS. Schema names in SQL files are NOT modified.
+
+Enter your choice: 1
+
+⚡ Executing 1 schema(s)...
+
+================================================================================
+🔷 Executing STAGE schema objects (from stage.* files)
+================================================================================
+  ✅ Validation passed: All 15 file(s) use correct schema 'stage'
+  📋 Files to execute:
+     ✓ stage.table01_delta.sql → stage schema
+     ✓ stage.table02_delta.sql → stage schema
+     ✓ stage.table03_delta.sql → stage schema
+     ✓ stage.table04_delta.sql → stage schema
+     ✓ stage.table05_delta.sql → stage schema
+     ✓ stage.table06_delta.sql → stage schema
+     ✓ stage.table07_delta.sql → stage schema
+     ✓ stage.table08_delta.sql → stage schema
+     ✓ stage.table09_delta.sql → stage schema
+     ✓ stage.table10_delta.sql → stage schema
+     ✓ stage.table11_delta.sql → stage schema
+     ✓ stage.table12_delta.sql → stage schema
+     ✓ stage.table13_delta.sql → stage schema
+     ✓ stage.table14_delta.sql → stage schema
+     ✓ stage.table15_delta.sql → stage schema
+
+  🚀 Executing batch for STAGE schema...
+Running: C:\Program Files\Snowflake SnowSQL\snowsql.exe -a PLEPXAR-CZ27669 -u HAPRA12345 -w COMPUTE_WH... [query hidden]
+STDOUT:
+* SnowSQL * v1.4.5
+Type SQL statements or !help
++-------------------------------------------+
+| status                                    |
+|-------------------------------------------|
+| Table TABLE01_DELTA successfully created. |
++-------------------------------------------+
+1 Row(s) produced. Time Elapsed: 0.339s
+;
++-------------------------------------------+
+| status                                    |
+|-------------------------------------------|
+| Table TABLE02_DELTA successfully created. |
++-------------------------------------------+
+1 Row(s) produced. Time Elapsed: 0.479s
+;
++-------------------------------------------+
+| status                                    |
+|-------------------------------------------|
+| Table TABLE03_DELTA successfully created. |
++-------------------------------------------+
+1 Row(s) produced. Time Elapsed: 0.440s
+;
++-------------------------------------------+
+| status                                    |
+|-------------------------------------------|
+| Table TABLE04_DELTA successfully created. |
++-------------------------------------------+
+1 Row(s) produced. Time Elapsed: 0.421s
+;
++-------------------------------------------+
+| status                                    |
+|-------------------------------------------|
+| Table TABLE05_DELTA successfully created. |
++-------------------------------------------+
+1 Row(s) produced. Time Elapsed: 0.536s
+;
++-------------------------------------------+
+| status                                    |
+|-------------------------------------------|
+| Table TABLE06_DELTA successfully created. |
++-------------------------------------------+
+1 Row(s) produced. Time Elapsed: 0.371s
+;
++-------------------------------------------+
+| status                                    |
+|-------------------------------------------|
+| Table TABLE07_DELTA successfully created. |
++-------------------------------------------+
+1 Row(s) produced. Time Elapsed: 0.334s
+;
++-------------------------------------------+
+| status                                    |
+|-------------------------------------------|
+| Table TABLE08_DELTA successfully created. |
++-------------------------------------------+
+1 Row(s) produced. Time Elapsed: 0.228s
+;
++-------------------------------------------+
+| status                                    |
+|-------------------------------------------|
+| Table TABLE09_DELTA successfully created. |
++-------------------------------------------+
+1 Row(s) produced. Time Elapsed: 0.295s
+;
++-------------------------------------------+
+| status                                    |
+|-------------------------------------------|
+| Table TABLE10_DELTA successfully created. |
++-------------------------------------------+
+1 Row(s) produced. Time Elapsed: 0.209s
+;
++-------------------------------------------+
+| status                                    |
+|-------------------------------------------|
+| Table TABLE11_DELTA successfully created. |
++-------------------------------------------+
+1 Row(s) produced. Time Elapsed: 0.530s
+;
++-------------------------------------------+
+| status                                    |
+|-------------------------------------------|
+| Table TABLE12_DELTA successfully created. |
++-------------------------------------------+
+1 Row(s) produced. Time Elapsed: 0.570s
+;
++-------------------------------------------+
+| status                                    |
+|-------------------------------------------|
+| Table TABLE13_DELTA successfully created. |
++-------------------------------------------+
+1 Row(s) produced. Time Elapsed: 0.415s
+;
++-------------------------------------------+
+| status                                    |
+|-------------------------------------------|
+| Table TABLE14_DELTA successfully created. |
++-------------------------------------------+
+1 Row(s) produced. Time Elapsed: 0.366s
+;
++-------------------------------------------+
+| status                                    |
+|-------------------------------------------|
+| Table TABLE15_DELTA successfully created. |
++-------------------------------------------+
+1 Row(s) produced. Time Elapsed: 0.680s
+;
+Goodbye!
+
+  ✅ Successfully executed 15 statement(s)
+  ⏱️  Execution time: 13.28 seconds
+
+================================================================================
+📊 EXECUTION SUMMARY
+================================================================================
+  ✅ STAGE: 13.28s | 15 files | 0.89s per file
+
+  📁 TOTAL FILES EXECUTED: 15
+  ⏱️  TOTAL EXECUTION TIME: 13.28 seconds (0.22 minutes)
+  ⚡ AVERAGE TIME PER FILE: 0.89 seconds
+================================================================================
+
+🎉 Execution Complete!
+
+Run another execution? (y/n):

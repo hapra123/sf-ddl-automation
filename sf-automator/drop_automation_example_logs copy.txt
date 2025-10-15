@@ -1,0 +1,82 @@
+PS D:\Projects\SF-DDL-POC> & C:/Users/hardi/AppData/Local/Programs/Python/Python313/python.exe d:/Projects/SF-DDL-POC/sf-automator/drop_schema_objects.py
+🔌 Testing Snowflake connection...
+Running: C:\Program Files\Snowflake SnowSQL\snowsql.exe -a PLEPXAR-CZ27669 -u HAPRA12345 -w COMPUTE_WH... [query hidden]
+STDOUT:
+* SnowSQL * v1.4.5
+Type SQL statements or !help
++----------------+-------------------+--------------------+
+| CURRENT_USER() | CURRENT_ACCOUNT() | CURRENT_REGION()   |
+|----------------+-------------------+--------------------|
+| HAPRA12345     | FL62809           | AWS_AP_SOUTHEAST_1 |
++----------------+-------------------+--------------------+
+1 Row(s) produced. Time Elapsed: 0.087s
+Goodbye!
+
+✅ Connection successful!
+
+
+🔍 Fetching objects from CURATED schema...
+Running: C:\Program Files\Snowflake SnowSQL\snowsql.exe -a PLEPXAR-CZ27669 -u HAPRA12345 -w COMPUTE_WH... [query hidden]
+STDOUT:
+* SnowSQL * v1.4.5
+Type SQL statements or !help
++---------------+------------+
+| TABLE_NAME    | TABLE_TYPE |
+|---------------+------------|
+| TABLE01_VIEW1 | VIEW       |
+| TABLE01_VIEW2 | VIEW       |
+| TABLE02_VIEW1 | VIEW       |
+| TABLE02_VIEW2 | VIEW       |
+| TABLE03_VIEW1 | VIEW       |
+| TABLE03_VIEW2 | VIEW       |
+| TABLE04_VIEW1 | VIEW       |
+| TABLE04_VIEW2 | VIEW       |
+| TABLE05_VIEW1 | VIEW       |
+| TABLE05_VIEW2 | VIEW       |
+| TABLE06_VIEW1 | VIEW       |
+| TABLE06_VIEW2 | VIEW       |
+| TABLE07_VIEW1 | VIEW       |
+| TABLE07_VIEW2 | VIEW       |
+| TABLE08_VIEW1 | VIEW       |
+| TABLE08_VIEW2 | VIEW       |
+| TABLE09_VIEW1 | VIEW       |
+| TABLE09_VIEW2 | VIEW       |
+| TABLE10_VIEW1 | VIEW       |
+| TABLE10_VIEW2 | VIEW       |
+| TABLE11_VIEW1 | VIEW       |
+| TABLE11_VIEW2 | VIEW       |
+| TABLE12_VIEW1 | VIEW       |
+| TABLE12_VIEW2 | VIEW       |
+| TABLE13_VIEW1 | VIEW       |
+| TABLE13_VIEW2 | VIEW       |
+| TABLE14_VIEW1 | VIEW       |
+| TABLE14_VIEW2 | VIEW       |
+| TABLE15_VIEW1 | VIEW       |
+| TABLE15_VIEW2 | VIEW       |
++---------------+------------+
+30 Row(s) produced. Time Elapsed: 0.627s
+
+Goodbye!
+
+✅ Successfully retrieved object list from CURATED schema
+
+================================================================================
+⚠️  WARNING: You are about to DROP ALL OBJECTS from 'CURATED' schema!
+================================================================================
+
+Type 'DELETE CURATED' to confirm: DELETE CURATED
+
+What would you like to drop?
+  1. Only VIEWS
+  2. Only TABLES
+  3. ALL OBJECTS (Views + Tables)
+
+Enter your choice (1/2/3): 2
+
+================================================================================
+🗑️  Dropping all TABLEs from CURATED schema
+================================================================================
+📋 Listing TABLEs...
+ℹ️  No TABLEs found in CURATED schema
+
+🎉 Drop operation complete!
