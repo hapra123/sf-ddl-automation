@@ -48,27 +48,12 @@ def run_snowsql_command(config, query):
     # Return success only if no errors and exit code is 0
     return result.returncode == 0 and not has_errors
 
-def extract_schema_from_file(file_content):
-    """Extract the schema name used in the SQL file"""
-    import re
-    # Look for CREATE TABLE/VIEW schema.object_name patterns
-    patterns = [
-        r'CREATE\s+(?:OR\s+REPLACE\s+)?TABLE\s+(\w+)\.',
-        r'CREATE\s+(?:OR\s+REPLACE\s+)?VIEW\s+(\w+)\.',
-    ]
-    
-    for pattern in patterns:
-        match = re.search(pattern, file_content, re.IGNORECASE)
-        if match:
-            return match.group(1).lower()
-    return None
-
 def execute_schema_files(config, ddl_root, file_prefix, target_schema):
     """Execute DDL files with specific prefix for a target schema"""
     start_time = time.time()
     
     print(f"\n{'='*80}")
-    print(f"🔷 Executing {target_schema.upper()} schema objects (from {file_prefix}.* files)")
+    print(f"🔷 Executing {target_schema.upper()} schema (from {file_prefix}.* files)")
     print(f"{'='*80}")
     
     # Get all table folders
@@ -77,8 +62,7 @@ def execute_schema_files(config, ddl_root, file_prefix, target_schema):
     
     # Collect all SQL statements for this file prefix
     batch_statements = []
-    file_info = []  # Store file name and detected schema
-    schema_mismatch_found = False
+    file_names = []
     
     for table_folder in table_folders:
         # Get all SQL files for this prefix
@@ -93,52 +77,17 @@ def execute_schema_files(config, ddl_root, file_prefix, target_schema):
             with open(sql_file, 'r', encoding='utf-8') as f:
                 query = f.read().strip()
                 if query:
-                    # Extract schema from SQL content
-                    detected_schema = extract_schema_from_file(query)
-                    file_name = os.path.basename(sql_file)
-                    
-                    # CRITICAL VALIDATION: File prefix must match detected schema
-                    if detected_schema and detected_schema.lower() != file_prefix.lower():
-                        print(f"  ❌ SCHEMA MISMATCH: {file_name}")
-                        print(f"     File prefix: '{file_prefix}' but SQL creates objects in '{detected_schema}' schema")
-                        print(f"     Expected: {file_prefix}.* files should only create objects in '{file_prefix}' schema")
-                        schema_mismatch_found = True
-                        continue
-                    
-                    # Validate: file prefix should match target schema intent
-                    # But SQL content can use any schema name as written
-                    if detected_schema:
-                        file_info.append({
-                            'name': file_name,
-                            'prefix': file_prefix,
-                            'detected_schema': detected_schema,
-                            'query': query
-                        })
-                        batch_statements.append(query)
-                    else:
-                        print(f"  ⚠️  Warning: Could not detect schema in {file_name}")
-                        batch_statements.append(query)
-                        file_info.append({
-                            'name': file_name,
-                            'prefix': file_prefix,
-                            'detected_schema': 'unknown',
-                            'query': query
-                        })
-    
-    # Stop if schema mismatch found
-    if schema_mismatch_found:
-        print(f"\n  🛑 Stopping execution due to schema mismatches")
-        print(f"  💡 Tip: File prefix must match the schema used in SQL statements")
-        return False, 0, 0
+                    batch_statements.append(query)
+                    file_names.append(os.path.basename(sql_file))
     
     if not batch_statements:
         print(f"  ⚠️  No SQL files found with prefix '{file_prefix}'")
         return False, 0, 0
     
-    print(f"  ✅ Validation passed: All {len(batch_statements)} file(s) use correct schema '{file_prefix}'")
+    print(f"  ✅ Found {len(batch_statements)} file(s) with prefix '{file_prefix}'")
     print(f"  📋 Files to execute:")
-    for info in file_info:
-        print(f"     ✓ {info['name']} → {info['detected_schema']} schema")
+    for file_name in file_names:
+        print(f"     ✓ {file_name}")
     
     # Combine all statements with semicolons
     batch_query = ";\n\n".join(batch_statements) + ";"
